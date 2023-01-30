@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <iframe src="http://localhost:4000/b.html" frameborder="0" id="iframe" onload="load()"></iframe>
+  <script>
+    function load () {
+      //a.html:15 Uncaught DOMException: Blocked a frame with origin "http://localhost:3000" from accessing a cross-origin frame. 
+      console.log("a",document.getElementById("iframe").contentWindow.a)
+      document.getElementById("iframe").contentWindow.postMessage("i love you","http://localhost:4000")
+
+      window.onmessage=(e) => {
+        console.log(e)
+      }
+    }
+  </script>
+</body>
+
+</html>

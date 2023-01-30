@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function inc (i) {
+      let value=0
+      var Increment=function() {
+        value+=i
+        console.log(value)
+        const message=`current value is ${value}`
+        return function() {
+          console.log(message)
+        }
+      }
+      return Increment
+    }
+
+    let log=inc(1) //返回Increment函数
+    let Inc=inc(1)
+    log() //调用函数，外部value =0;输出1
+    log() //2
+    log() //3
+    Inc() //1
+    let func=Inc() //value=2
+    func() //current value is 2
+  </script>
+</body>
+
+</html>

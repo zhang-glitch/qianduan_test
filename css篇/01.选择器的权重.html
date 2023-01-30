@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 下面三个选择器，权重是一样的 */
+    p[name="zh"] {
+      color: blue;
+    }
+
+    p.inner {
+      color: red;
+    }
+
+    /* 这个选择器只能出现在嵌套元素内。但是first-child就不会有这个限制 */
+    p:last-child {
+      color: green;
+    }
+
+
+    /* 测试外部样式和内部样式的权重 。 权重是一样的。 */
+    span {
+      color: red;
+    }
+  </style>
+  <link rel="stylesheet" href="./01.外链css.css">
+</head>
+
+<body>
+  <!-- 
+    id: 100
+    属性选择器 = 伪类选择器 = 标签.类 > 类
+    类：10
+    标签： 1
+    伪元素：1
+    其他： 0
+  -->
+
+  <!-- <div> -->
+  <p class="inner" name="zh">ppppppppppp</p>
+  <!-- </div> -->
+
+  <span>我是span标签</span>
+</body>
+
+</html>

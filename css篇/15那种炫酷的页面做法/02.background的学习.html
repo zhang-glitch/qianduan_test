@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 50px;
+      height: 50px;
+      border: 20px solid transparent;
+      padding: 20px 30px;
+      /* background-color: blue; */
+      background-image: url(./a.jpg);
+      background-repeat: no-repeat;
+      /* 这个只是设置背景图片的大小，和容器是没有关系的。*/
+      /* background-size: 20px 50px; */
+      /* 在那些位置开始填充背景颜色和图片 */
+      background-clip: content-box;
+      /* background-origin: padding-box; */
+      /* background-attachment: fixed; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- #### background-size: 
+
+- 只作用于引入的背景图片，不作用于背景颜色
+
+- #### 写在background-image: url()后面才生效
+
+- ..px ..px(宽 高) /
+
+- cover(覆盖)背景图片可能显示不完全，容器完全覆盖
+
+- contain(包含)图片完整，容器可能有空隙 -->
+
+  <!-- background-origin: padding-box(默认)：即在padding区域填充
+- border-box：在border处填充
+- content-box：在content处填充 -->
+  <div></div>
+</body>
+
+</html>

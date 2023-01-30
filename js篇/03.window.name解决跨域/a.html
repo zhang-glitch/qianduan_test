@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    a和b是同域的 http://localhost:3000 
+  
+    c是独立的 http://localhost:4000
+
+    a获取c的数据
+
+    a先引用c c把值放在window.name中，把a引入的iframe地址改为b
+  -->
+  <iframe src="http://localhost:4000/c.html" frameborder="0" id="iframe" onload="load()"></iframe>
+  <script>
+    let flag=true;
+    function load () {
+      if(flag) {
+        const iframe=document.getElementById("iframe")
+        // 改变iframe的src时，他的name值不会消失。只要改变src，load方法就会重新执行。
+        iframe.src="http://localhost:3000/b.html"
+        flag=false;
+      } else {
+        console.log("获取name的值",iframe.contentWindow.name)
+      }
+
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #check:checked {
+      margin-left: 25px;
+      border: 10px solid blue;
+    }
+
+    #check:checked+label {
+      color: red;
+    }
+
+    #input:focus {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+  - checked 表单元素被选中的元素
+  - focus 选中表单聚焦的元素
+  - link 未移入时的状态
+  - visited 访问后的状态
+  - hover 引入后的状态
+  - active 鼠标按下的状态
+-->
+  <form>
+    <input type="text" id="input">
+
+    <input type="checkbox" id="check">
+    <label for="check">yy</label>
+  </form>
+</body>
+
+</html>

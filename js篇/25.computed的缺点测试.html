@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.37/vue.cjs.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <template id="template">
+    <button @click="increase">添加计数</button>
+    <h3>列表</h3>
+    <ul>
+      <li v-for="item in sortedList">
+        {{ item }}
+      </li>
+    </ul>
+  </template>
+
+  <script>
+    import {ref,reactive,computed,onUpdated,createApp} from 'vue'
+    const createApp({
+      comments: {
+
+      }
+      setup () {
+        const list=reactive([1,2,3,4,5])
+
+        const count=ref(0)
+        function increase () {
+          count.value++
+        }
+
+        const isOver100=computed(() => count.value>100)
+
+        const sortedList=computed(() => {
+          // 这里比较简单，可以将它想象成开销大的计算
+          return isOver100.value? [...list].reverse():[...list]
+        })
+
+        onUpdated(() => {
+          // 组件重新渲染时触发
+          console.log('count is',count.value)
+          console.log('component re-rendered!')
+        })
+      }
+    },document.getElementById("app"))
+
+
+  </script>
+</body>
+
+</html>

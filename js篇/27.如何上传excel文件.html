@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+</head>
+
+<body>
+  <form action="http://localhost:8080/upload" enctype="multipart/form-data" method="post" id="sub">
+    <input type="file" name="file">
+    <input type="submit" value="提交">
+  </form>
+  <script>
+    // const sub=document.getElementById("sub")
+    // sub.onsubmit=(e) => {
+    //   e.preventDefault();
+
+    //   // axios("http://localhost:8080/upload").then(
+    //   //   res => {
+    //   //     console.log("===",res)
+    //   //   })
+    //   const fd=new FileReader()
+    //   fd.readAsDataURL(e.target[0].files[0])
+    //   console.log(URL.createObjectURL(e.target[0].files[0]))
+    //   fd.onload=() => {
+    //     console.log(fd.result) // 这个必须调用onload方法中获取，不然可能为空
+    //   }
+    //   console.log("====",e.target[0].files[0])
+    // }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      color: yellow;
+    }
+
+    /* 这里的权重最低  color: red ，但是依旧是显示黄色。*/
+    /* @import "./a.css"; */
+  </style>
+  <!-- 从外界引入的需要看其引入的位置 -->
+  <!-- <link rel="stylesheet" href="./a.css"> -->
+</head>
+
+<body>
+  <!--  style="color: blue;" 权重最大 -->
+  <div id="div">测试文字</div>
+
+  <script>
+    const dom=document.getElementById("div")
+    // dom.style.color="blue"
+    console.log(dom.style.color) // 这里只能获取内联style设置的样式啊
+  </script>
+</body>
+
+</html>
