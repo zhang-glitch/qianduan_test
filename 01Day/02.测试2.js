@@ -1,0 +1,1 @@
+console.log(require('./01.测试'))// {}。表示module.exports = exports是在文件最上层赋值的。
