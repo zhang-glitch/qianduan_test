@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- ul>li{sss$}*5 -->
+  <ul>
+    <li>dianying1</li>
+    <li>dianying2</li>
+    <li>dianying3</li>
+    <li>dianying4</li>
+    <li>dianying5</li>
+  </ul>
+  <div id="root"></div>
+  <script type="text/babel">
+    let name='Josh Perez';
+    const handleClick=function() {
+      name="kkkkk"
+      console.log("name",name)
+      render();
+    }
+    render();
+
+    // 需要多次调用
+    function render () {
+      ReactDOM.render(
+        <div>
+          <h1>Hello, {name}</h1>
+          <button onClick={handleClick}>按钮</button>
+          <img src="" alt="" />
+        </div>,
+        document.getElementById('root')
+      );
+    }
+  </script>
+</body>
+
+</html>

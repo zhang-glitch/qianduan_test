@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="download">download</div>
+  <div class="abort">abort</div>
+  <script>
+    const controller=new AbortController();
+    let signal=controller.signal;
+
+    const downloadBtn=document.querySelector('.download');
+    const abortBtn=document.querySelector('.abort');
+
+    downloadBtn.addEventListener('click',fetchVideo);
+
+    abortBtn.addEventListener('click',function() {
+      controller.abort();
+      console.log('Download aborted');
+    });
+
+    function fetchVideo () {
+      //...
+      fetch("http://myjson.dit.upm.es/api/bins/dy2h",{signal}).then(function(response) {
+        //...
+      }).catch(function(e) {
+        reports.textContent='Download error: '+e.message;
+      })
+    }
+  </script>
+</body>
+
+</html>

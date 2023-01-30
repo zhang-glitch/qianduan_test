@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class ElHow extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state={
+          list: [{
+            name: "nodejs",
+            id: 1,
+            date: "2006-9",
+            price: 85,
+            num: 1,
+          },{
+            name: "react",
+            id: 2,
+            date: "2006-2",
+            num: 1,
+            price: 59
+          },{
+            name: "vue",
+            id: 3,
+            date: "2008-10",
+            num: 1,
+            price: 39
+          },{
+            name: "javascript",
+            id: 4,
+            date: "2006-3",
+            price: 128,
+            num: 1
+          }]
+        }
+      }
+      handleDown=(index) => {
+        // console.log(index)
+        this.setState({
+          list: this.state.list.map((item,indey) => {
+            if(index==indey&&item.num>1) {
+              return {
+                ...item,
+                num: item.num-1
+              }
+            }
+            return item
+          })
+        })
+      }
+      handleUp=(index) => {
+        // nb理解
+        this.setState({
+          list: this.state.list.map((item,indey) => {
+            if(index==indey) {
+              return {
+                ...item,
+                num: item.num+1
+              }
+            }
+            return item
+          })
+        })
+      }
+      handleRemove=(index) => {
+        this.setState({
+          list: this.state.list.filter((item,indey) => index!=indey)
+        })
+      }
+
+      render () {
+        let total=0;
+        this.state.list.forEach(item => {
+          total+=(item.num*item.price)
+        })
+        return (
+          <div>
+            {
+              !this.state.list.length? <div>购物车为空~</div>:
+                (
+                  <div>
+                    <table border="1">
+                      <thead>
+                        <tr>
+                          <th>编号</th>
+                          <th>书籍名称</th>
+                          <th>出版日期</th>
+                          <th>价格</th>
+                          <th>购买数量</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          this.state.list.map((item,index) => {
+                            return (
+                              <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>《{item.name}》</td>
+                                <td>{item.date}</td>
+                                <td>￥{item.price}</td>
+                                <td>
+                                  <button
+                                    disabled={item.num===1}
+                                    onClick={(e) => {this.handleDown(index)}}
+                                  >-</button>
+                                  {item.num}
+                                  <button
+                                    onClick={(e) => {this.handleUp(index)}}
+                                  >+</button>
+                                </td>
+                                <td>
+                                  <button
+                                    onClick={(e) => {this.handleRemove(index)}}
+                                  >移除</button></td>
+                              </tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </table>
+                    <div>总价钱：￥{total}</div>
+                  </div>
+                )
+            }
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<ElHow />,document.getElementById('root'))
+  </script>
+</body>
+
+</html>
