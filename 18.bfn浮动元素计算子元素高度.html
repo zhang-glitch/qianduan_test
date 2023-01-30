@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      /* position: absolute; */
+
+      border: 5px solid black;
+    }
+
+    .parent::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+
+    .left,
+    .right {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+
+    .right {
+      height: 300px;
+      background: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="left">
+      .left,
+      .right {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: red;
+      }
+    </div>
+    <div class="right">
+      .right {
+      height: 300px;
+      background: blue;
+      }
+    </div>
+  </div>
+</body>
+
+</html>

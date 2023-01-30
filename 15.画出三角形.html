@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div {
+      border-left: 10px solid skyblue;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-top: 10px solid transparent;
+    }
+
+    /* parent */
+    .parent {
+      width: 100px;
+      height: 50px;
+      background: red;
+      position: relative;
+
+    }
+
+    .son {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      margin-top: 50%;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div"></div>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <!-- 利用两个元素叠加，旋转小元素 -->
+  <div class="parent">
+    <div class="son"></div>
+  </div>
+  <script>
+    const canvas=document.getElementById("canvas");
+    canvas.
+  </script>
+</body>
+
+</html>

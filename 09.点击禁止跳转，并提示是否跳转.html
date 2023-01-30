@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="content">
+    <a href="http://baidu.com">点击跳转1</a>
+    <a href="http://juejin.cn">点击跳转1</a>
+    <a href="http://124.223.183.225:3000/">点击跳转1</a>
+  </div>
+  <script>
+
+    const oAs=document.getElementById("content").getElementsByTagName("a");
+    for(let i in oAs) {
+      oAs[i].onclick=function(e) {
+        if(e&&e.preventDefault)
+          e.preventDefault();
+        else
+          window.event.returnValue=false;
+
+        const isFlag=window.confirm(`是否跳转到指定的页面: ${this.getAttribute("href")}`);
+        if(isFlag) {
+          window.open(this.getAttribute("href"));
+        } else {
+          return;
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

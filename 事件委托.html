@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>事件委托</title>
+</head>
+
+<body>
+  <ul id="list">
+    <li node-type="1">111</li>
+    <li node-type="2">222</li>
+    <li node-type="3">333</li>
+  </ul>
+  <script>
+    window.onload=function() {
+      var list=document.getElementById('list');
+      list.addEventListener("click",function(e) {
+        console.log(e.currentTarget,e.target)
+        // 兼容性处理
+        //var event = e || window.event;
+        var target=event.target||event.srcElement;
+        // 判断是否匹配目标元素
+        if(target.nodeName==='LI') {
+          console.log('the content is: ',target.innerHTML);
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>
