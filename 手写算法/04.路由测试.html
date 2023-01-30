@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="/zh">zh</a>
+  <a href="/llm">llm</a>
+  <div id="container">我是默认页面</div>
+  <script>
+    const container = document.getElementById("container");
+    const aEls = document.getElementsByTagName("a");
+    const changeContent = () => {
+      switch (location.pathname) {
+        case "/zh":
+          container.innerHTML = "我是zh页面"
+          break;
+
+        case "/llm":
+          container.innerHTML = "我是llm页面"
+          break;
+
+        default:
+          container.innerHTML = "我是其他页面"
+          break;
+      }
+    }
+    for (let a of aEls) {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = a.getAttribute("href");
+        console.log("href", href)
+        // 将路由保存到对应栈中
+        history.pushState({}, "", href)
+        changeContent()
+      })
+    }
+
+    // 监听出栈状态
+    addEventListener("popstate", changeContent)
+  </script>
+</body>
+
+</html>

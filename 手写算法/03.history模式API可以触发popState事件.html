@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btnA">切换到A</button>
+  <button id="btnB">切换到B</button>
+  <button id="btnC">回退</button>
+  <button id="btnD">前进</button>
+  <a href="/a">aaa</a>
+  <a href="/b">bbb</a>
+  <div id="con"></div>
+  <script>
+    const btnA = document.getElementById("btnA")
+    const btnB = document.getElementById("btnB")
+    const btnC = document.getElementById("btnC")
+    const btnD = document.getElementById("btnD")
+    const con = document.getElementById('con')
+    btnA.onclick = () => {
+      history.pushState({ msg: 'A' }, '', "/a")
+      con.innerHTML = "我是A页面"
+    }
+    btnB.onclick = () => {
+      history.pushState({ msg: 'B' }, '', "/b")
+      con.innerHTML = "我是B页面"
+    }
+    btnC.onclick = () => {
+      history.back()
+    }
+    btnD.onclick = () => {
+      // history.forward()
+      history.go(1)
+    }
+    addEventListener("popstate", (event) => {
+      console.log("event-popstate", event)
+    })
+    addEventListener("hashchange", (event) => {
+      console.log("event - hashchange", event)
+    })
+  </script>
+</body>
+
+</html>
