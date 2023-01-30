@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <inject-component></inject-component>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      setup() {
+        const obj = reactive({
+          name: 'zh',
+          age: 20
+        })
+        const xifu = ref('llm')
+
+        provide('obj', obj)
+        provide('xifu', xifu)
+      }
+    })
+
+    app.mount("#app")
+
+    app.component('inject-component', {
+      setup() {
+        inject('obj')
+        inject('xifu')
+      },
+      template: `<p>{{xifu}}</p>`
+    })
+  </script>
+</body>
+
+</html>

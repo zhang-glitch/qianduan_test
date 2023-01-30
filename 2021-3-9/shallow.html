@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>如果改变底层数据，想让视图更新，我们先改变底层数据，在改变第一层数据即可更新视图。</h1>
+    <ul>
+      <li>{{a}}</li>
+      <li>{{b.name}}</li>
+      <li>{{b.age}}</li>
+      <button @click="handleChange">改变a</button>
+      <button @click="handleChange2">改变b</button>
+    </ul>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      setup() {
+        const sr = Vue.shallowReactive({
+          a: 1,
+          b: {
+            name: 'llm',
+            age: 20
+          }
+        })
+
+
+        // 这两个事件改变的对象，都指向同一个地址。
+        const handleChange = () => {
+          sr.a = 2;
+          console.log(sr)
+        }
+        const handleChange2 = () => {
+          sr.b.name = "zh"
+          sr.b.age = 21
+          console.log(sr)
+        }
+        return {
+          ...Vue.toRefs(sr),
+          handleChange,
+          handleChange2
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>

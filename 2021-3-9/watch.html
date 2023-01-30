@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script>
+    const app = Vue.createApp({
+      setup() {
+        const state = Vue.reactive({ count: 0, name: 'zs' })
+
+        // 回调函数中的参数是前新后旧。多个值，就用数组结构
+        Vue.watch(
+          [() => state.count, () => state.name],
+          ([newCount, newName], [oldCount, oldName]) => {
+            console.log(oldCount) // 旧的 count 值
+            console.log(newCount) // 新的 count 值
+            console.log(oldName) // 旧的 name 值
+            console.log(newName) // 新的 name 值
+          }
+        )
+
+        setTimeout(() => {
+          state.count++
+          state.name = 'ls'
+        }, 1000)
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>

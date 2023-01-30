@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="blog-posts-events-demo" class="demo">
+    <div :style="{ fontSize: postFontSize + 'em' }">
+      <blog-post v-for="post in posts" :key="post.id" :title="post.title" @enlarge-text="OnClick($event)">
+      </blog-post>
+      <table>
+        <tr v-is="'v-is-component'"></tr>
+      </table>
+    </div>
+  </div>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          posts: [
+            { id: 1, title: 'My journey with Vue' },
+            { id: 2, title: 'Blogging with Vue' },
+            { id: 3, title: 'Why Vue is so fun' }
+          ],
+          postFontSize: 1
+        }
+      },
+      methods: {
+        OnClick(val, e) {
+          console.log(val, e)// 1， undefined
+        }
+      }
+    })
+
+    app.component('blog-post', {
+      props: ['title'],
+      emits: ['enlargeText'],
+      template: `
+    <div class="blog-post">
+      <h4>{{ title }}</h4>
+      <button @click="$emit('enlargeText', 1)">
+        Enlarge text
+      </button>
+    </div>
+  `
+    })
+
+    app.component('v-is-component', {
+      template: `
+       <div>
+        <tr>我是tr标签，外部不存在table标签。</tr>  
+      </div>
+      `
+    })
+
+    app.mount('#blog-posts-events-demo')
+  </script>
+</body>
+
+</html>

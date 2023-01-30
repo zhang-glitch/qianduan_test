@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 这里默认情况下在跨域请求，浏览器是不带 cookie 的。但是我们可以通过设置 withCredentials 来进行传递 cookie.
+    fetch('http://localhost:8080/')
+      .then((res) => res.json())
+      .then((result) => {
+        console.log('res',result)
+      })
+
+    fetch('http://localhost:8080/index',{
+      withCredentials: true,
+    })
+      .then((res) => res.json())
+      .then((res2) => {
+        console.log('res',res2)
+      })
+  </script>
+</body>
+
+</html>

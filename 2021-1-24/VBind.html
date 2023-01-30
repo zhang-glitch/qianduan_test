@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 事件处理程序中可以有多个方法,但是执行只会执行后一个方法 -->
+    <button :disabled="isDisabled" @click="OnClick, twoClick('LLM')" :['name'+name]="333">按钮</button>
+    <p>{{now}}</p>
+    <textarea>{{ text }}</textarea>
+    <template v-if="true">
+      <p :class="[activeClass, {'zh': true}]">我是在template中的标签</p>
+    </template>
+    <son-template :number="number" @test-click="number += $event"></son-template>
+    <template v-show="true">
+      <p>show作用的</p>
+    </template>
+
+  </div>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          // 如果 isDisabled 的值是 null 或 undefined，则 disabled attribute 甚至不会被包含在渲染出来的 <button> 元素中。
+          isDisabled: undefined,
+          name: 'zh',
+          lastName: 'z',
+          firstName: 'h',
+          text: '我搜啊哦单位大的能力',
+          activeClass: 'active',
+          number: 0
+        }
+      },
+      methods: {
+        OnClick() {
+          console.log("111")
+        },
+        twoClick(val) {
+          console.log(val)
+        }
+      },
+      mounted() {
+        console.log(this)
+      },
+      computed: {
+        now() {
+          return Date.now()
+        }
+      },
+      watch: {
+        firstName(val) {
+          console.log(val)
+          this.fullName = val + ' ' + this.lastName
+        },
+        lastName(val) {
+          this.fullName = this.firstName + ' ' + val
+        }
+      }
+    }).mount("#app")
+
+    app.component("son-component", {
+      props: ['number'],
+      emits: ['test-click'],
+      template: `
+        <div>
+          <p>{{number}}</p>
+          <button @click="$emit('test-click', 1)">加一</button>
+        </div>
+      `
+    })
+  </script>
+</body>
+
+</html>
